@@ -17,21 +17,34 @@ const User = mongoose.model('User', userSchema);
 
 async function fetchUsers(){
     //find, findOne, findById
-    const users = await User.findById('60e813112d14ad0df091b69a'); 
+    //QUERY API - SELECT
+    // const users = await User.find({isMarried: true}).select('name age'); 
+    // const users = await User.find({isMarried: true}).select('-name -sallary -isMarried'); 
+
+    //QUERY API - SORT
+    // const users = await User.find({isMarried: true}).select('name sallary').sort('sallary');
+
+    //QUERY API - LIMIT 
+    // const users = await User.find({isMarried: true}).select('name sallary').sort('sallary').limit(2);
+    
+    //QUERY API - LIMIT 
+    const users = await User.find({isMarried: true}).select('name sallary').countDocuments(); 
     console.log(users);
 };
 fetchUsers();
 // async function storeInformation(){
 
-//     const user = new User({
-//          name : 'Prince',
-//          age : 20,
-//          isMarried : true,
-//          gender : 'male',
-//          sallary : 5000,
-//      });
+//     const user = new User(
+//         {
+//         name : 'Candlina',
+//         age : 26,
+//         isMarried : false,
+//         gender : 'female',
+//         sallary : 11000,
+//         }
+//     );
 
-//      await user.save();
+//     await user.save();
     
 //     console.log(user);
 // }

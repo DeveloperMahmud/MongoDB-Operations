@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-async function fetchUsers(){
+// async function fetchUsers(){
 
     //find, findOne, findById
     //QUERY API - SELECT
@@ -60,15 +60,24 @@ async function fetchUsers(){
         2-SHOW ONLY NAME
         3-SORTED BY NAME 
     */
-    const users = await User.find().or([{age: {$gt: 25}}, {isMarried: false}])
-        .select('name')
-        .sort('name')
-    ;
+//     const users = await User.find().or([{age: {$gt: 25}}, {isMarried: false}])
+//         .select('name')
+//         .sort('name')
+//     ;
 
-    console.log(users);
-};
+//     console.log(users);
+// };
 
-fetchUsers();
+// fetchUsers();
+
+//Logical Update a Document
+async function db (){
+    const user = await User.findById('60e874d117b7161334266d35');
+    user.name = 'Meghla Nur';
+    await user.save();
+    console.log(user);
+}
+db();
 
 
 // async function storeInformation(){

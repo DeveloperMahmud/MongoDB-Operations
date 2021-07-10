@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost:27017/test', 
+{
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+    useFindAndModify:false
+})
     .then(() => console.log('Database is Connected!'))
     .catch((err) => console.error(err));
 
@@ -71,14 +76,29 @@ const User = mongoose.model('User', userSchema);
 // fetchUsers();
 
 //Logical Update a Document
-async function db (){
-    const user = await User.findById('60e874d117b7161334266d35');
-    user.name = 'Meghla Nur';
-    await user.save();
-    console.log(user);
-}
-db();
+// async function db (){
+//     const user = await User.findById('60e874d117b7161334266d35');
+//     user.name = 'Meghla Nur';
+//     await user.save();
+//     console.log(user);
+// }
+// db();
 
+//Update a Document (Mongoos Method)
+async function db (){
+    const user = await User.findByIdAndUpdate('60e875af14d745119800bfbe',
+    {
+        isMarried: true,
+        age:55,
+    },
+    {
+        new: true,
+        runValidators: true,
+    }
+    );
+    console.log(user);
+};
+db();
 
 // async function storeInformation(){
 

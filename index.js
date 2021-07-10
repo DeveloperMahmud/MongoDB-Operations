@@ -53,7 +53,17 @@ async function fetchUsers(){
     // const users = await User.find().or([{age: 21}, {isMarried: true}]);
     
     //AND
-    const users = await User.find().and([{age: 27}, {isMarried: true}]);
+    // const users = await User.find().and([{age: 27}, {isMarried: true}]);
+
+    /* A Problem
+        1-FIND THOSE USERS WHOS AGE IS GREATER THAN 25 OR THEY ARE UNMARRIED
+        2-SHOW ONLY NAME
+        3-SORTED BY NAME 
+    */
+    const users = await User.find().or([{age: {$gt: 25}}, {isMarried: false}])
+        .select('name')
+        .sort('name')
+    ;
 
     console.log(users);
 };

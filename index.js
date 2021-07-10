@@ -85,20 +85,35 @@ const User = mongoose.model('User', userSchema);
 // db();
 
 //Update a Document (Mongoos Method)
+// async function db (){
+//     const user = await User.findByIdAndUpdate('60e875af14d745119800bfbe',
+//     {
+//         isMarried: true,
+//         age:55,
+//     },
+//     {
+//         new: true,
+//         runValidators: true,
+//     }
+//     );
+//     console.log(user);
+// };
+// db();
+
+/* Delete Documents in 3 ways
+===========================
+
+1-DeleteOne
+2-DeleteMany
+3-FindByIdAndDelete
+*/
 async function db (){
-    const user = await User.findByIdAndUpdate('60e875af14d745119800bfbe',
-    {
-        isMarried: true,
-        age:55,
-    },
-    {
-        new: true,
-        runValidators: true,
-    }
-    );
-    console.log(user);
+    // await User.deleteOne({_id: '60e875af14d745119800bfbe'});
+    // await User.deleteMany({isMarried: false});
+    await User.findByIdAndDelete('60e87674e4451ded761000a3');
 };
 db();
+
 
 // async function storeInformation(){
 

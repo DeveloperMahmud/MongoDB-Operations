@@ -45,7 +45,16 @@ async function fetchUsers(){
 
 
     // const users = await User.find({ sallary: { $in:[8000] } });
-    const users = await User.find({ age: { $lt: 24 } });
+    // const users = await User.find({ age: { $lt: 24 } });
+
+    //Complex Query - AND , OR Operators
+
+    //OR
+    // const users = await User.find().or([{age: 21}, {isMarried: true}]);
+    
+    //AND
+    const users = await User.find().and([{age: 27}, {isMarried: true}]);
+
     console.log(users);
 };
 

@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 async function fetchUsers(){
+
     //find, findOne, findById
     //QUERY API - SELECT
     // const users = await User.find({isMarried: true}).select('name age'); 
@@ -28,10 +29,29 @@ async function fetchUsers(){
     // const users = await User.find({isMarried: true}).select('name sallary').sort('sallary').limit(2);
     
     //QUERY API - LIMIT 
-    const users = await User.find({isMarried: true}).select('name sallary').countDocuments(); 
+    // const users = await User.find({isMarried: true}).select('name sallary').countDocuments(); 
+
+    /*Comparison Operator
+    =====================
+    eq
+    ne
+    gt
+    gte
+    lt
+    lte
+    in
+    nin
+    */
+
+
+    // const users = await User.find({ sallary: { $in:[8000] } });
+    const users = await User.find({ age: { $lt: 24 } });
     console.log(users);
 };
+
 fetchUsers();
+
+
 // async function storeInformation(){
 
 //     const user = new User(
